@@ -1,0 +1,7 @@
+/Users/mwilko777/Desktop/CMP1903M_A01_2223/CMP1903M A01 2223/obj/Debug/CMP1903M A01 2223.csproj.AssemblyReference.cache
+/Users/mwilko777/Desktop/CMP1903M_A01_2223/CMP1903M A01 2223/obj/Debug/CMP1903M A01 2223.csproj.CoreCompileInputs.cache
+/Users/mwilko777/Desktop/CMP1903M_A01_2223/CMP1903M A01 2223/bin/Debug/CMP1903M A01 2223.exe.config
+/Users/mwilko777/Desktop/CMP1903M_A01_2223/CMP1903M A01 2223/bin/Debug/CMP1903M A01 2223.exe
+/Users/mwilko777/Desktop/CMP1903M_A01_2223/CMP1903M A01 2223/bin/Debug/CMP1903M A01 2223.pdb
+/Users/mwilko777/Desktop/CMP1903M_A01_2223/CMP1903M A01 2223/obj/Debug/CMP1903M A01 2223.exe
+/Users/mwilko777/Desktop/CMP1903M_A01_2223/CMP1903M A01 2223/obj/Debug/CMP1903M A01 2223.pdb

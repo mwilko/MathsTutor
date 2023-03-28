@@ -9,6 +9,8 @@ namespace MathsTutor
 
 		public void MainMenu()
 		{
+            Pack pack = new Pack();
+
             bool isValid = false;
             int choice = 0;
 
@@ -17,18 +19,18 @@ namespace MathsTutor
             //validation for dealing or exiting program
             do
             {
-                Console.WriteLine("Would you like to [1] Deal Again or [2] Exit the Program: ");
+                Console.WriteLine("Would you like to [1] Deal a Card or [2] Exit the Program: ");
                 choice = GetInputAndTypeValidate(choice);
                 isValid = ValidateRange(choice, 1, 2);
             } while (!isValid);
 
             if (choice == 1)
             {
-
+                pack.shuffleCardPack();
             }
             else if (choice == 2)
             {
-
+                ExitProgram();
             }
             else
             {

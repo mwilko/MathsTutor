@@ -10,6 +10,10 @@ namespace MathsTutor
         public string TypeError { get; } = "TypeError. Plase enter a valid value";
 
         //validation of choice input by user
+
+        //ad-hoc polymorphism (method overloading) included when overloading ValidateRange methods
+        //int method is for choosing what the user wants the program to do, float method is
+        //for entering their answer for the result of the cards
         public int GetInputAndTypeValidate(int intChoice)
         {
             bool isValid = false;

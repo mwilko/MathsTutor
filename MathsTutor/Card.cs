@@ -1,7 +1,7 @@
 ﻿using System;
 namespace MathsTutor
 {
-    public class Card
+    public class Card : ica
     {
         private int _value;
         public int Value
@@ -84,30 +84,6 @@ namespace MathsTutor
         {
             this.Suit = suit;
         }
-
-        //public override string ToString()
-        //{
-        //    //the cards are in the form of an integer value and string value. 
-        //    string suitValue = "";
-        //    if (Suit == 1)
-        //    {
-        //        suitValue = "+";
-        //    }
-        //    else if (Suit == 2)
-        //    {
-        //        suitValue = "-";
-        //    }
-        //    else if (Suit == 3)
-        //    {
-        //        suitValue = "*";
-        //    }
-        //    else if (Suit == 4)
-        //    {
-        //        suitValue = "/";
-        //    }
-        //    //return $"{Value} of {Suit} ({suitValue}) ";
-        //    return $"{suitValue}";
-        //}
 
         public override string ToString()
         {

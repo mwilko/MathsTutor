@@ -27,7 +27,7 @@ namespace MathsTutor
                 //validation for file choice
                 do
                 {
-                    Console.WriteLine("Would you like to [1] Deal Again or [2] Return to Menu: ");
+                    Console.WriteLine("Would you like to [1] Deal or [2] Exit: ");
                     choice = GetInputAndTypeValidate(choice);
                     isValid = ValidateRange(choice, 1, 2);
                 } while (!isValid);

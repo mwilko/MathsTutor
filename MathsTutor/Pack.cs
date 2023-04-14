@@ -1,7 +1,7 @@
 ﻿using System;
 namespace MathsTutor
 {
-	public class Pack
+	public class Pack : IPack
 	{
         //list and objects initialised
         public static List<Card> SuitCardPack;
@@ -60,7 +60,7 @@ namespace MathsTutor
                 ValueCardPack[k] = ValueCardPack[n];
                 ValueCardPack[n] = card;
             }
-            OutputPack();
+            //OutputPack();
             return true;
         }
 
@@ -146,7 +146,7 @@ namespace MathsTutor
 
         public void dealCard5()
         {
-            //Deals 3 cards
+            //Deals 5 cards
             //card object is set to null as if all bool variables are false
             //the card object would have no value for the method to return
             Card cardValue1 = null;
@@ -216,6 +216,7 @@ namespace MathsTutor
 
             Console.WriteLine($"{equation} \n");
 
+            //input type and range validation 
             do
             {
                 Console.WriteLine("Enter your answer (decimal answers are accepted and answers are rounded to 1 decimal place): ");
@@ -223,41 +224,17 @@ namespace MathsTutor
                 isValid = rangeValidation.ValidateRange(userAnswer, 0.0, 9999.9);
             } while (!isValid);
 
+            //condition to check weather the user is right or wrong
             if (userAnswer == answer)
             {
                 Console.WriteLine("You Won!");
             }
+            else
+            {
+                Console.WriteLine("You Lose!");
+            }
 
         }
-
-        //public  List<Card> dealCard(int amount)
-        //{
-        //    //Deals the number of cards specified by 'amount'
-        //    List<Card> hand = new List<Card>();
-        //    if (amount == 3)
-        //    {
-        //        hand.Add(valueDealCard());
-        //        hand.Add(suitDealCard());
-        //        hand.Add(valueDealCard());
-        //        //for (int i = 0; i < amount; i++)
-        //        //{
-        //        //    hand.Add(dealCard());
-        //        //}
-        //    }
-        //    else if (amount == 5)
-        //    {
-        //        hand.Add(valueDealCard());
-        //        hand.Add(suitDealCard());
-        //        hand.Add(valueDealCard());
-        //        hand.Add(suitDealCard());
-        //        hand.Add(valueDealCard());
-        //    }
-        //    else
-        //    {
-        //        Console.WriteLine("Error: dealing error, amount not within boundaries ");
-        //    }
-        //    return hand;
-        //}
 
         //created for testing purposes
         public void OutputPack()

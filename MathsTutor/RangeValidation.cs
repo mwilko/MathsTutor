@@ -29,7 +29,7 @@ namespace MathsTutor
             return isValid;
         }
 
-        public bool ValidateRange(float value, float lowerBoundary, float upperBoundary)
+        public bool ValidateRange(double value, double lowerBoundary, double upperBoundary)
         {
             bool isValid = false;
             if (value >= lowerBoundary && value <= upperBoundary)

@@ -3,53 +3,66 @@ namespace MathsTutor
 {
 	public class Menu : Input
 	{
-		public Menu()
+        Pack pack = new Pack();
+
+        public Menu()
 		{
 		}
 
 		public void MainMenu()
 		{
-            Pack pack = new Pack();
-
-            bool isValid = false;
-            int choice = 0;
-
             Console.WriteLine("----- Welcome to the Maths Tutor! -----");
 
-            //validation for dealing or exiting program
-            do
-            {
-                Console.WriteLine("Would you like to [1] Deal a Card or [2] Exit the Program: ");
-                choice = GetInputAndTypeValidate(choice);
-                isValid = ValidateRange(choice, 1, 2);
-            } while (!isValid);
-
-            if (choice == 1)
-            {
-                pack.shuffleCardPack();
-            }
-            else if (choice == 2)
-            {
-                ExitProgram();
-            }
-            else
-            {
-                Console.WriteLine($"Error: '{choice}' is not accepted, please contact IT support: ");
-            }
+            DealOrMenu();
         }
 
 		public void DealOrMenu()
 		{
             bool isValid = false;
+            bool dealCards = true;
             int choice = 0;
-
-            //validation for file choice
+            //loop which continues until the user wants to quit the application
             do
             {
-                Console.WriteLine("Would you like to [1] Deal Again or [2] Return to Menu: ");
-                choice = GetInputAndTypeValidate(choice);
-                isValid = ValidateRange(choice, 1, 2);
-            } while (!isValid);
+                //validation for file choice
+                do
+                {
+                    Console.WriteLine("Would you like to [1] Deal Again or [2] Return to Menu: ");
+                    choice = GetInputAndTypeValidate(choice);
+                    isValid = ValidateRange(choice, 1, 2);
+                } while (!isValid);
+
+                if (choice == 1)//deal cards
+                {
+                    dealCards = true;
+                    pack.shuffleCardPack();
+                    do
+                    {
+                        Console.WriteLine("Would you like to [1] Deal 3 Cards or [2] Deal 5 Cards: ");
+                        choice = GetInputAndTypeValidate(choice);
+                        isValid = ValidateRange(choice, 1, 2);
+                    } while (!isValid);
+                    if (choice == 1)
+                    {
+                        pack.dealCard3();
+                        DealOrMenu();
+                    }
+                    else if (choice == 2)
+                    {
+                        pack.dealCard5();
+                        DealOrMenu();
+                    }
+                    else
+                    {
+                        Console.WriteLine("Error: Could not call either of the dealCard methods (Menu.cs) ");
+                    }
+                }
+                if (choice == 2)//exit program
+                {
+                    dealCards = false;
+                    ExitProgram();
+                }
+            } while (dealCards == true);
         }
 
         public void ExitProgram()

@@ -7,7 +7,8 @@ namespace MathsTutor
 		{
 		}
         //property used for error message
-        public string TypeError { get; } = "TypeError. Plase enter a valid value";
+        //encapsulated TypeError property -
+        protected string TypeError { get; } = "TypeError. Plase enter a valid value";
 
         //validation of choice input by user
 

@@ -17,6 +17,7 @@ namespace MathsTutor
                 }
                 else
                 {
+                    //exception handling
                     throw new Exception("Error, Value should be " +
                         "between 1 and 13. ");
                 }
@@ -35,6 +36,7 @@ namespace MathsTutor
                 }
                 else
                 {
+                    //exception handling
                     throw new Exception("Error, Suit value should be " +
                         "between 1 and 4.");
                 }
@@ -68,6 +70,7 @@ namespace MathsTutor
                 }
                 else
                 {
+                    //exception handling
                     throw new Exception("Error, SuitMessage should be either:" +
                         " =, -, * or / ");
                 }
@@ -111,6 +114,7 @@ namespace MathsTutor
                 }
                 else
                 {
+                    //exception handling
                     return $"{Value}";
                 }
             

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 namespace MathsTutor
 {
 	public class Pack : IPack //class Pack inherits from interface IPack
@@ -118,6 +119,7 @@ namespace MathsTutor
             }
             else
             {
+                //exception handling
                 //error message to catch any errors which may occur
                 Console.WriteLine("Error: Unexpected error, contact IT support: ");
             }
@@ -137,6 +139,13 @@ namespace MathsTutor
                 userAnswer = input.GetInputAndTypeValidate(userAnswer);
                 isValid = rangeValidation.ValidateRange(userAnswer, 0.0, 9999.9);
             } while (!isValid);
+
+            //object instance, created to write the statistics to a file 'statistics.txt'
+            StreamWriter writer = new StreamWriter("statistics.txt");
+            writer.WriteLine($"Equation: {equation}");
+            writer.WriteLine($"Answer: {answer}");
+            writer.WriteLine($"Users Answer: {userAnswer}");
+            writer.Close();
 
             if (userAnswer == answer)
             {
@@ -224,6 +233,13 @@ namespace MathsTutor
                 userAnswer = input.GetInputAndTypeValidate(userAnswer);
                 isValid = rangeValidation.ValidateRange(userAnswer, 0.0, 9999.9);
             } while (!isValid);
+
+            //object instance, created to write the statistics to a file 'statistics.txt'
+            StreamWriter writer = new StreamWriter("statistics.txt");
+            writer.WriteLine($"Equation: {equation}");
+            writer.WriteLine($"Answer: {answer}");
+            writer.WriteLine($"Users Answer: {userAnswer}");
+            writer.Close();
 
             //condition to check weather the user is right or wrong
             if (userAnswer == answer)

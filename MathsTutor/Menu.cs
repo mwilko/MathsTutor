@@ -1,7 +1,7 @@
 ﻿using System;
 namespace MathsTutor
 {
-	public class Menu : Input
+	public class Menu : Input // derived class Menu inherits from base class Input
 	{
         //instantiate object 'pack' 
         Pack pack = new Pack();

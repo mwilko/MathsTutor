@@ -1,7 +1,7 @@
 ﻿using System;
 namespace MathsTutor
 {
-    public class Card : ica
+    public class Card : ICard //class Card inherits from interface ICard
     {
         private int _value;
         public int Value

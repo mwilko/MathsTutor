@@ -1,7 +1,7 @@
 ﻿using System;
 namespace MathsTutor
 {
-	public class Pack : IPack
+	public class Pack : IPack //class Pack inherits from interface IPack
 	{
         //list and objects initialised
         public static List<Card> SuitCardPack;
@@ -9,8 +9,8 @@ namespace MathsTutor
         public static bool shufflingBool = false;
         public Input input = new Input();
         public RangeValidation rangeValidation = new RangeValidation();
-        
 
+        //instantiate object 'random' 
         protected Random random = new Random();
 
         public int[] suits = { 1, 2, 3, 4 };
@@ -144,7 +144,7 @@ namespace MathsTutor
             }
         }
 
-        public void dealCard5()
+        public void dealCard5()//INCLUDE : use BODMAS to claculate answer
         {
             //Deals 5 cards
             //card object is set to null as if all bool variables are false
@@ -207,7 +207,8 @@ namespace MathsTutor
                 Console.WriteLine("Error: Unexpected error, contact IT support: ");
             }
             Console.WriteLine("\n");
-            Console.WriteLine($"Please Calculate the answer to this equation: ");
+            Console.WriteLine($"Please Calculate the answer to this equation: \n" +
+                $"(Use BODMAS to calculate your answer) ");
 
             equation = $"{cardValue1}{cardSuit1}{cardValue2}{cardSuit2}{cardValue3}";
             answer = Math.Round(Calculate(equation), 1);

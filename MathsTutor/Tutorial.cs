@@ -10,9 +10,10 @@ namespace MathsTutor
 
         public void MathsTutorApp()
         {
+            //instantiation of object 'menu' 
             Menu menu = new Menu();
             menu.MainMenu();
-            menu.DealOrMenu();
+            menu.MenuSelection();
         }
     }
 }

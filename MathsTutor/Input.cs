@@ -1,13 +1,13 @@
 ﻿using System;
 namespace MathsTutor
 {
-	public class Input : RangeValidation
+	public class Input : RangeValidation // derived class Input inherits from base class RangeValidation
 	{
 		public Input()
 		{
 		}
         //property used for error message
-        //encapsulated TypeError property -
+        //encapsulated TypeError property
         protected string TypeError { get; } = "TypeError. Plase enter a valid value";
 
         //validation of choice input by user

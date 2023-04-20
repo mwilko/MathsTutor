@@ -49,7 +49,7 @@ namespace MathsTutor
                 if (choice == 1)//deal cards
                 {
                     continueSelection = true;
-                    pack.shuffleCardPack();
+                    pack.ShuffleCardPack();
                     do
                     {
                         Console.WriteLine("Would you like to [1] Deal 3 Cards or [2] Deal 5 Cards: ");
@@ -58,12 +58,12 @@ namespace MathsTutor
                     } while (!isValid);
                     if (choice == 1)
                     {
-                        pack.dealCard3();
+                        pack.DealCard3();
                         MenuSelection();
                     }
                     else if (choice == 2)
                     {
-                        pack.dealCard5();
+                        pack.DealCard5();
                         MenuSelection();
                     }
                     else
@@ -79,6 +79,7 @@ namespace MathsTutor
                 else if (choice == 3)//exit program
                 {
                     continueSelection = false;//ends loop continuation
+                    pack.CloseTxtFile();//closes text file in pack class
                     ExitProgram();
                 }
 

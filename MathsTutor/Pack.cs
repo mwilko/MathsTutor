@@ -8,10 +8,10 @@ namespace MathsTutor
         public static List<Card> SuitCardPack;
         public static List<Card> ValueCardPack;
         public static bool shufflingBool = false;
-        public Input input = new Input();
-        public RangeValidation rangeValidation = new RangeValidation();
 
-        //instantiate object 'random' 
+        //instantiate objects
+        public Input input = new Input();
+        public StreamWriter writer = new StreamWriter("statistics.txt");
         protected Random random = new Random();
 
         public int[] suits = { 1, 2, 3, 4 };
@@ -35,7 +35,7 @@ namespace MathsTutor
             }
         }
 
-        public bool shuffleCardPack()
+        public bool ShuffleCardPack()
         {
             //fisher-yates shuffling algorithm 
             int n = SuitCardPack.Count;
@@ -68,7 +68,7 @@ namespace MathsTutor
         //method which takes an equation and returns the answer as a float.
         //(Included because values are card objects and cannot be
         //converted to integer values and operators without lots of code)
-        public static double Calculate(string equation)
+        public static double GetAnswer(string equation)
         {
             System.Data.DataTable table = new System.Data.DataTable();
             table.Columns.Add("equation", string.Empty.GetType(), equation);
@@ -77,7 +77,75 @@ namespace MathsTutor
             return double.Parse((string)row["equation"]);
         }
 
-        public void dealCard3()
+        public static double GetAnswerBODMAS(string equation)
+        {
+            // Remove any white space from the equation
+            equation = equation.Replace(" ", "");
+
+            // Define the order of operations (BODMAS)
+            string[] operations = new string[] { "^", "/", "*", "+", "-" };
+
+            // Split the equation into separate terms based on the order of operations
+            string[] terms = equation.Split(operations, StringSplitOptions.RemoveEmptyEntries);
+
+            // Create a list to hold the operators
+            List<string> operators = new List<string>();
+
+            // Loop through the equation and add the operators to the list
+            foreach (char c in equation)
+            {
+                if (operations.Contains(c.ToString()))
+                {
+                    operators.Add(c.ToString());
+                }
+            }
+
+            // Calculate the terms based on the order of operations
+            for (int i = 0; i < operations.Length; i++)
+            {
+                // Loop through the operators and calculate the terms based on the current operation
+                for (int j = 0; j < operators.Count; j++)
+                {
+                    if (operators[j] == operations[i])
+                    {
+                        double leftTerm = Convert.ToDouble(terms[j]);
+                        double rightTerm = Convert.ToDouble(terms[j + 1]);
+                        double result = 0;
+
+                        switch (operators[j])
+                        {
+                            case "^":
+                                result = Math.Pow(leftTerm, rightTerm);
+                                break;
+                            case "/":
+                                result = leftTerm / rightTerm;
+                                break;
+                            case "*":
+                                result = leftTerm * rightTerm;
+                                break;
+                            case "+":
+                                result = leftTerm + rightTerm;
+                                break;
+                            case "-":
+                                result = leftTerm - rightTerm;
+                                break;
+                        }
+
+                        // Replace the terms with the calculated result and remove the operator
+                        terms[j] = result.ToString();
+                        terms[j + 1] = "";
+                        operators.RemoveAt(j);
+                    }
+                }
+            }
+
+            // Return the final calculated result
+            return Convert.ToDouble(terms[0]);
+        }
+
+
+
+        public void DealCard3()
         {
             //Deals 3 cards
             //card object is set to null as if all bool variables are false
@@ -127,7 +195,9 @@ namespace MathsTutor
             Console.WriteLine($"Please Calculate the answer to this equation: ");
 
             equation = $"{cardValue1}{cardSuit}{cardValue2}";
-            answer = Math.Round(Calculate(equation), 1);
+
+            //calculates answer (bodmas method not used because there is only 2 nums and one operator)
+            answer = Math.Round(GetAnswer(equation), 1);
             Console.WriteLine(answer);
 
             Console.WriteLine($"{equation} \n");
@@ -137,15 +207,14 @@ namespace MathsTutor
                 Console.WriteLine("Enter your answer (decimal values are accepted, " +
                     "answers are rounded to 1 decimal point): ");
                 userAnswer = input.GetInputAndTypeValidate(userAnswer);
-                isValid = rangeValidation.ValidateRange(userAnswer, 0.0, 9999.9);
+                isValid = input.ValidateRange(userAnswer, -1000.0, 9999.9);
             } while (!isValid);
 
             //object instance, created to write the statistics to a file 'statistics.txt'
-            StreamWriter writer = new StreamWriter("statistics.txt");
             writer.WriteLine($"Equation: {equation}");
             writer.WriteLine($"Answer: {answer}");
             writer.WriteLine($"Users Answer: {userAnswer}");
-            writer.Close();
+            writer.WriteLine("");//wrote to format the statistics better if more than one set is wrote to the file
 
             if (userAnswer == answer)
             {
@@ -153,7 +222,7 @@ namespace MathsTutor
             }
         }
 
-        public void dealCard5()//INCLUDE : use BODMAS to claculate answer
+        public void DealCard5()//INCLUDE : use BODMAS to claculate answer
         {
             //Deals 5 cards
             //card object is set to null as if all bool variables are false
@@ -220,7 +289,9 @@ namespace MathsTutor
                 $"(Use BODMAS to calculate your answer) ");
 
             equation = $"{cardValue1}{cardSuit1}{cardValue2}{cardSuit2}{cardValue3}";
-            answer = Math.Round(Calculate(equation), 1);
+
+            //calculates answer according to BODMAS
+            answer = Math.Round(GetAnswerBODMAS(equation), 1);
             Console.WriteLine(answer);
 
 
@@ -231,15 +302,14 @@ namespace MathsTutor
             {
                 Console.WriteLine("Enter your answer (decimal answers are accepted and answers are rounded to 1 decimal place): ");
                 userAnswer = input.GetInputAndTypeValidate(userAnswer);
-                isValid = rangeValidation.ValidateRange(userAnswer, 0.0, 9999.9);
+                isValid = input.ValidateRange(userAnswer, -1000.0, 9999.9);
             } while (!isValid);
 
-            //object instance, created to write the statistics to a file 'statistics.txt'
-            StreamWriter writer = new StreamWriter("statistics.txt");
+            //object created to write the statistics to a file 'statistics.txt'
             writer.WriteLine($"Equation: {equation}");
             writer.WriteLine($"Answer: {answer}");
             writer.WriteLine($"Users Answer: {userAnswer}");
-            writer.Close();
+            writer.WriteLine("");//wrote to format the statistics better if more than one set is wrote to the file
 
             //condition to check weather the user is right or wrong
             if (userAnswer == answer)
@@ -251,6 +321,11 @@ namespace MathsTutor
                 Console.WriteLine("You Lose!");
             }
 
+        }
+
+        public void CloseTxtFile()
+        {
+            writer.Close();
         }
 
         //created for testing purposes

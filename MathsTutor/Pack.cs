@@ -79,19 +79,13 @@ namespace MathsTutor
 
         public static double GetAnswerBODMAS(string equation)
         {
-            // Remove any white space from the equation
-            equation = equation.Replace(" ", "");
+            string[] operations = new string[] { "/", "*", "+", "-" };
 
-            // Define the order of operations (BODMAS)
-            string[] operations = new string[] { "^", "/", "*", "+", "-" };
-
-            // Split the equation into separate terms based on the order of operations
+            //splits equation everytime a operator is found
             string[] terms = equation.Split(operations, StringSplitOptions.RemoveEmptyEntries);
-
-            // Create a list to hold the operators
             List<string> operators = new List<string>();
 
-            // Loop through the equation and add the operators to the list
+            //check what operators are in the equation and add them to the 'operators' list
             foreach (char c in equation)
             {
                 if (operations.Contains(c.ToString()))
@@ -100,50 +94,54 @@ namespace MathsTutor
                 }
             }
 
-            // Calculate the terms based on the order of operations
+            //for loop which checks which term is used first according to BODMAS
             for (int i = 0; i < operations.Length; i++)
             {
-                // Loop through the operators and calculate the terms based on the current operation
                 for (int j = 0; j < operators.Count; j++)
                 {
                     if (operators[j] == operations[i])
                     {
-                        double leftTerm = Convert.ToDouble(terms[j]);
-                        double rightTerm = Convert.ToDouble(terms[j + 1]);
+                        double firstTerm;
+                        double SecondTerm;
                         double result = 0;
 
-                        switch (operators[j])
+                        //check if expressions are able to convert to double values
+                        if (double.TryParse(terms[j], out firstTerm) && double.TryParse(terms[j + 1], out SecondTerm))
                         {
-                            case "^":
-                                result = Math.Pow(leftTerm, rightTerm);
-                                break;
-                            case "/":
-                                result = leftTerm / rightTerm;
-                                break;
-                            case "*":
-                                result = leftTerm * rightTerm;
-                                break;
-                            case "+":
-                                result = leftTerm + rightTerm;
-                                break;
-                            case "-":
-                                result = leftTerm - rightTerm;
-                                break;
-                        }
+                            //switch to choose the operators expressions in order of BODMAS
+                            switch (operators[j])
+                            {
+                                case "/":
+                                    result = firstTerm / SecondTerm;
+                                    break;
+                                case "*":
+                                    result = firstTerm * SecondTerm;
+                                    break;
+                                case "+":
+                                    result = firstTerm + SecondTerm;
+                                    break;
+                                case "-":
+                                    result = firstTerm - SecondTerm;
+                                    break;
+                            }
 
-                        // Replace the terms with the calculated result and remove the operator
-                        terms[j] = result.ToString();
-                        terms[j + 1] = "";
-                        operators.RemoveAt(j);
+                            //terms set to the calculated answer
+                            terms[j] = result.ToString();
+                            terms[j + 1] = "";
+                            operators.RemoveAt(j);
+                        }
+                        else
+                        {
+                            //catch error if equation not value (shouldnt be possible)
+                            throw new Exception("Invalid equation.");
+                        }
                     }
                 }
             }
 
-            // Return the final calculated result
+            //output answer
             return Convert.ToDouble(terms[0]);
         }
-
-
 
         public void DealCard3()
         {
@@ -198,7 +196,7 @@ namespace MathsTutor
 
             //calculates answer (bodmas method not used because there is only 2 nums and one operator)
             answer = Math.Round(GetAnswer(equation), 1);
-            Console.WriteLine(answer);
+            //Console.WriteLine(answer); //used for error handling
 
             Console.WriteLine($"{equation} \n");
 
@@ -222,7 +220,7 @@ namespace MathsTutor
             }
         }
 
-        public void DealCard5()//INCLUDE : use BODMAS to claculate answer
+        public void DealCard5()//BODMAS is included
         {
             //Deals 5 cards
             //card object is set to null as if all bool variables are false
@@ -292,7 +290,7 @@ namespace MathsTutor
 
             //calculates answer according to BODMAS
             answer = Math.Round(GetAnswerBODMAS(equation), 1);
-            Console.WriteLine(answer);
+            //Console.WriteLine(answer); //used for error handling
 
 
             Console.WriteLine($"{equation} \n");
@@ -323,6 +321,8 @@ namespace MathsTutor
 
         }
 
+        //called when closing txt file, text file data wont work if this
+        //method isnt called upon before app closure
         public void CloseTxtFile()
         {
             writer.Close();

@@ -8,7 +8,7 @@ namespace MathsTutor
 		}
         //property used for error message
         //encapsulated TypeError property
-        protected string TypeError { get; } = "TypeError. Plase enter a valid value";
+        private string TypeError { get; } = "TypeError. Plase enter a valid value";
 
         //ad-hoc polymorphism (method overloading) included when overloading ValidateRange methods
         //int method is for choosing what the user wants the program to do, float method is
@@ -47,6 +47,9 @@ namespace MathsTutor
         //ad-hoc polymorphism (method overloading) included when overloading ValidateRange methods
         //int method is for choosing what the user wants the program to do, float method is
         //for entering their answer for the result of the cards
+
+        //sub-type polymorphism (method overriding) included when Validate Range overrides the base
+        //abstract method from the RangeValidation abstract class
         public override bool ValidateRange(int value, int lowerBoundary, int upperBoundary)
         {
             bool isValid = false;

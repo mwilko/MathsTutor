@@ -9,7 +9,7 @@ namespace MathsTutor
         public bool ShuffleCardPack();
 		public void DealCard3();
         public void DealCard5();
-		//outputpack included for testing reasons
+		//OutputPack included for testing reasons
 		public void OutputPack();
     }
 }

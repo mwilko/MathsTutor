@@ -68,7 +68,7 @@ namespace MathsTutor
         //method which takes an equation and returns the answer as a float.
         //(Included because values are card objects and cannot be
         //converted to integer values and operators without lots of code)
-        public static double GetAnswer(string equation)
+        public double GetAnswer(string equation)
         {
             System.Data.DataTable table = new System.Data.DataTable();
             table.Columns.Add("equation", string.Empty.GetType(), equation);
@@ -77,7 +77,7 @@ namespace MathsTutor
             return double.Parse((string)row["equation"]);
         }
 
-        public static double GetAnswerBODMAS(string equation)
+        public double GetAnswerBODMAS(string equation)
         {
             string[] operations = new string[] { "/", "*", "+", "-" };
 
@@ -196,7 +196,7 @@ namespace MathsTutor
 
             //calculates answer (bodmas method not used because there is only 2 nums and one operator)
             answer = Math.Round(GetAnswer(equation), 1);
-            //Console.WriteLine(answer); //used for error handling
+            Console.WriteLine(answer); //used for error handling
 
             Console.WriteLine($"{equation} \n");
 
@@ -290,7 +290,7 @@ namespace MathsTutor
 
             //calculates answer according to BODMAS
             answer = Math.Round(GetAnswerBODMAS(equation), 1);
-            //Console.WriteLine(answer); //used for error handling
+            Console.WriteLine(answer); //used for error handling
 
 
             Console.WriteLine($"{equation} \n");

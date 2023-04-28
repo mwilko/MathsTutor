@@ -167,21 +167,18 @@ namespace MathsTutor
                     Console.WriteLine("Error: Pack is empty");
                 }
                 cardValue1 = ValueCardPack[0];
-                //ValueCardPack.RemoveAt(indexValue);
 
                 if (SuitCardPack.Count == 0)
                 {
                     Console.WriteLine("Error: Pack is empty");
                 }
                 cardSuit = SuitCardPack[0];
-                //SuitCardPack.RemoveAt(indexValue);
 
                 if (ValueCardPack.Count == 0)
                 {
                     Console.WriteLine("Error: Pack is empty");
                 }
                 cardValue2 = ValueCardPack[1];
-                //ValueCardPack.RemoveAt(indexValue);
             }
             else
             {
@@ -218,6 +215,14 @@ namespace MathsTutor
             {
                 Console.WriteLine("You Won!");
             }
+            else if (userAnswer != answer)
+            {
+                Console.WriteLine("You Lose!");
+            }
+            else
+            {
+                Console.WriteLine("Unknown Error: Please contact IT support");
+            }
         }
 
         public void DealCard5()//BODMAS is included
@@ -247,35 +252,30 @@ namespace MathsTutor
                     Console.WriteLine("Error: Pack is empty");
                 }
                 cardValue1 = ValueCardPack[0];
-                //ValueCardPack.RemoveAt(indexValue);
 
                 if (SuitCardPack.Count == 0)
                 {
                     Console.WriteLine("Error: Pack is empty");
                 }
                 cardSuit1 = SuitCardPack[0];
-                //SuitCardPack.RemoveAt(indexValue);
 
                 if (ValueCardPack.Count == 0)
                 {
                     Console.WriteLine("Error: Pack is empty");
                 }
                 cardValue2 = ValueCardPack[1];
-                //ValueCardPack.RemoveAt(indexValue);
 
                 if (SuitCardPack.Count == 0)
                 {
                     Console.WriteLine("Error: Pack is empty");
                 }
                 cardSuit2 = SuitCardPack[1];
-                //SuitCardPack.RemoveAt(indexValue);
 
                 if (ValueCardPack.Count == 0)
                 {
                     Console.WriteLine("Error: Pack is empty");
                 }
                 cardValue3 = ValueCardPack[2];
-                //ValueCardPack.RemoveAt(indexValue);
             }
             else
             {
@@ -314,11 +314,14 @@ namespace MathsTutor
             {
                 Console.WriteLine("You Won!");
             }
-            else
+            else if (userAnswer != answer)
             {
                 Console.WriteLine("You Lose!");
             }
-
+            else
+            {
+                Console.WriteLine("Unknown Error: Please contact IT support");
+            }
         }
 
         //called when closing txt file, text file data wont work if this

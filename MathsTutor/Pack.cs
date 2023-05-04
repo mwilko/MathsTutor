@@ -61,6 +61,8 @@ namespace MathsTutor
                 ValueCardPack[k] = ValueCardPack[n];
                 ValueCardPack[n] = card;
             }
+
+            //OutputPack method checks if the packs shuffle, they do.
             //OutputPack();
             return true;
         }
@@ -128,7 +130,6 @@ namespace MathsTutor
                             //terms set to the calculated answer
                             terms[j] = result.ToString();
                             terms[j + 1] = "";
-                            operators.RemoveAt(j);
                         }
                         else
                         {

@@ -2,7 +2,7 @@
 namespace MathsTutor
 {
     //used to test the program
-	public class Tutorial : Input // derived class Menu inherits from base class Input
+	public class Tutorial : Input // derived class Tutorial inherits from base class Input
     {
 
 		public Tutorial()

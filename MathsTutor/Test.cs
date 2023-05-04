@@ -2,13 +2,23 @@
 namespace MathsTutor
 {
 	//used to verify if the maths is correct
+    //test class also ensures methods works as needed
 	public class Test
 	{
         public Test()
         {
 
         }
+
         Pack pack = new Pack();
+        Input input = new Input();
+
+        public void TestPackShuffle()
+        {
+            pack.ShuffleCardPack();
+            pack.OutputPack();
+        }
+
         private string testStringAnswer = "13*12";
         private double answer = 13*12;
 
@@ -16,7 +26,7 @@ namespace MathsTutor
         {
             if (answer == pack.GetAnswer(testStringAnswer))
             {
-                Console.WriteLine($"Equation:{testStringAnswer}		IDE calculation:{answer}	GetAnswerBODMAS method calculation:{pack.GetAnswer(testStringAnswer)}");
+                Console.WriteLine($"Equation:{testStringAnswer}		IDE calculation:{answer}	GetAnswer method calculation:{pack.GetAnswer(testStringAnswer)}");
             }
             else
             {
